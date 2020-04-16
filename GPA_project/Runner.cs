@@ -21,9 +21,11 @@ namespace GPA_project
             ApplyResolutionSettings();
 
             // TODO: use this.Content to load your game content here
-            
+
 
             //Load GameStates
+            gameStateManager.AddGameState("PlayingState", new PlayingState());
+            gameStateManager.SwitchTo("PlayingState");
         }
     }
 }

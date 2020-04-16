@@ -5,6 +5,7 @@ public class SpriteGameObject : GameObject
 {
     protected SpriteSheet sprite;
     protected Vector2 origin;
+    public float scale = 1f;
     public bool PerPixelCollisionDetection = true;
 
     public SpriteGameObject(string assetName, int layer = 0, string id = "", int sheetIndex = 0)
@@ -26,7 +27,7 @@ public class SpriteGameObject : GameObject
         {
             return;
         }
-        sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+        sprite.Draw(spriteBatch, this.GlobalPosition, origin, scale);
     }
 
     public SpriteSheet Sprite
