@@ -11,6 +11,7 @@ namespace GPA_project
     {
         Background background;
         GameObjectList clouds;
+        Player player;
 
         public PlayingState()
         {
@@ -20,11 +21,24 @@ namespace GPA_project
             clouds = new GameObjectList();
             this.Add(clouds);
 
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < GameEnvironment.Random.Next(8,12); i++)
             {
                 this.clouds.Add(new Ground(new Vector2(100 + i * 80, GameEnvironment.Screen.Y - 100)));
             }
-            Console.WriteLine(clouds.Children.Count);
+            player = new Player();
+            this.Add(player);
+            player.LoadAnimation("runAnim", "RunningAnim", true);
+            player.PlayAnimation("RunningAnim");
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            foreach (Ground cloud in clouds.Children)
+            {
+                cloud.MoveGround();
+                cloud.ResetCloud();
+            }
         }
     }
 }

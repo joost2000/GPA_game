@@ -15,7 +15,7 @@ public class Animation : SpriteSheet
 
     public void Play()
     {
-        sheetIndex = 0;
+        sheetIndex = 5;
         time = 0.0f;
     }
 

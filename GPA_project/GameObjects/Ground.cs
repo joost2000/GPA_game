@@ -10,11 +10,24 @@ namespace GPA_project
 {
     class Ground : SpriteGameObject
     {
-        public Ground(Vector2 startPosition) : base("Cloud_18", 1)
+        public Ground(Vector2 startPosition) : base("Cloud_18")
         {
             origin = Center;
             position = startPosition;
             scale = 2f;
+        }
+
+        public void MoveGround()
+        {
+            position.X -= 10;
+        }
+
+        public void ResetCloud()
+        {
+            if (position.X <= -100)
+            {
+                position.X = GameEnvironment.Screen.X + 600;
+            }
         }
     }
 }

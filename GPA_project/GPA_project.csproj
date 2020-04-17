@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="GameObjects\Background.cs" />
     <Compile Include="GameObjects\Ground.cs" />
+    <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameStates\PlayingState.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
