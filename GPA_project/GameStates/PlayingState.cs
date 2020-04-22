@@ -10,7 +10,7 @@ namespace GPA_project
     class PlayingState : GameObjectList
     {
         Background background;
-        GameObjectList clouds;
+        GameObjectList platforms;
         Player player;
 
         public PlayingState()
@@ -18,25 +18,24 @@ namespace GPA_project
             background = new Background();
             this.Add(background);
 
-            clouds = new GameObjectList();
-            this.Add(clouds);
+            platforms = new GameObjectList();
+            this.Add(platforms);
 
             for (int i = 0; i < GameEnvironment.Random.Next(8,12); i++)
             {
-                this.clouds.Add(new Ground(new Vector2(100 + i * 80, GameEnvironment.Screen.Y - 100)));
+                this.platforms.Add(new Ground(new Vector2(100 + i * 80, GameEnvironment.Screen.Y - 100)));
             }
             player = new Player();
             this.Add(player);
-            player.LoadAnimation("runAnim", "RunningAnim", true);
-            player.PlayAnimation("RunningAnim");
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            foreach (Ground cloud in clouds.Children)
+
+            foreach (Ground cloud in this.platforms.Children)
             {
-                cloud.MoveGround();
+                //cloud.MoveGround();
                 cloud.ResetCloud();
             }
         }
