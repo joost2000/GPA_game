@@ -10,45 +10,51 @@ namespace GPA_project
 {
     class Player : SpriteGameObject
     {
-        bool hasJumped;
+        public bool canJump, onGround, keyPressed;
+        int jumpTimer = 0;
 
         public Player() : base("filler_player")
         {
             origin = Center;
             scale = 0.05f;
-            position = new Vector2(100, 570);
-            hasJumped = false;
+            position = new Vector2(100, 470);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            Console.WriteLine(velocity.Y);
 
-            if (hasJumped)
-            {
-                velocity.Y = -800;
-            }
-
-            if (position.Y < 500)
-            {
-                hasJumped = false;
-                velocity.Y += 80;
-            }
-
-            if (position.Y > 570)
+            if (onGround)
             {
                 velocity.Y = 0;
+                jumpTimer = 0;
+                keyPressed = false;
             }
+            else
+            {
+                velocity.Y += 18;
+            }
+
         }
 
 
         public override void HandleInput(InputHelper inputHelper)
         {
             base.HandleInput(inputHelper);
-            if (inputHelper.KeyPressed(Keys.Space) && !hasJumped)
+            if (inputHelper.KeyPressed(Keys.Space))
             {
-                hasJumped = true;
+                keyPressed = true;
+            }
+
+            if (inputHelper.IsKeyDown(Keys.Space) && !keyPressed)
+            {
+                jumpTimer++;
+                Console.WriteLine(jumpTimer);
+                if (!(jumpTimer > 25))
+                {
+                    velocity.Y = -200;
+                    velocity.Y += -400f;
+                }
             }
         }
     }

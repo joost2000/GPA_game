@@ -41,7 +41,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GameObjects\Background.cs" />
     <Compile Include="GameObjects\Ground.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameStates\PlayingState.cs" />

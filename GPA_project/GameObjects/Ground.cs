@@ -12,7 +12,6 @@ namespace GPA_project
     {
         public Ground(Vector2 startPosition) : base("Cloud_18")
         {
-            origin = Center;
             position = startPosition;
             scale = 2f;
         }

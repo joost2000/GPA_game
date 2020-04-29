@@ -9,14 +9,12 @@ namespace GPA_project
 {
     class PlayingState : GameObjectList
     {
-        Background background;
         GameObjectList platforms;
         Player player;
 
         public PlayingState()
         {
-            background = new Background();
-            this.Add(background);
+            this.Add(new SpriteGameObject("sky_background"));
 
             platforms = new GameObjectList();
             this.Add(platforms);
@@ -33,10 +31,21 @@ namespace GPA_project
         {
             base.Update(gameTime);
 
-            foreach (Ground cloud in this.platforms.Children)
+            foreach (Ground cloud in platforms.Children)
             {
                 //cloud.MoveGround();
                 cloud.ResetCloud();
+
+                if (player.GlobalPosition.Y >= cloud.GlobalPosition.Y)
+                {
+                    player.onGround = true;
+                }
+                else
+                {
+                    player.onGround = false;
+                }
+                Console.WriteLine(cloud.GlobalPosition.Y);
+                Console.WriteLine(player.onGround);
             }
         }
     }
