@@ -31,11 +31,10 @@ namespace GPA_project
             }
             else
             {
-                velocity.Y += 18;
+                velocity.Y += 20;
             }
 
         }
-
 
         public override void HandleInput(InputHelper inputHelper)
         {

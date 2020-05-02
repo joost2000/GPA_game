@@ -12,6 +12,7 @@ namespace GPA_project
         public CloudTemplate(Vector2 startPosition) : base("cloud_18")
         {
             position = startPosition;
+            scale = 1.5f;
         }
 
         public void ChangeCloudY()

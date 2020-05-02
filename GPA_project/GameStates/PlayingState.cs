@@ -11,10 +11,9 @@ namespace GPA_project
     {
         GameObjectList container;
         Platform platform1;
-        Platform platform2;
         Player player;
 
-        bool addNewclouds;
+        int cloudTimer = 0;
 
         public PlayingState()
         {
@@ -23,7 +22,7 @@ namespace GPA_project
             container = new GameObjectList();
             this.Add(container);
 
-            platform1 = new Platform(new Vector2(50, 640));
+            platform1 = new Platform(new Vector2(50, 640), 20);
             this.container.Add(platform1);
 
             player = new Player();
@@ -33,28 +32,9 @@ namespace GPA_project
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            platform1.moveObject = true;
             player.onGround = false;
-            /*
-            player.onGround = false;
-            foreach (SpriteGameObject item in platform.Children.ToList())
-            {
-                if(item.CollidesWith(player)){
-                    player.onGround = true;
-                }
-                if (item.Position.X < 0 - item.Sprite.Width)
-                {
-                    platform.Remove(item);
-                    
-                }
-                Console.WriteLine(platform.Children.Count());
-            }*/
+            cloudTimer++;
 
-            /*if (platform.Children.Count != 10)
-            {
-                platform.createNewY = true;
-                platform.AddClouds();
-            }*/
             foreach (Platform item in container.Children.ToList())
             {
                 foreach (CloudTemplate sprite in item.Children.ToList())
@@ -72,13 +52,15 @@ namespace GPA_project
                         player.onGround = true;
                     }
                 }
-                Console.WriteLine(container.Children.Count);
-                if (container.Children.Count == 0)
-                {
-                    platform1 = new Platform(new Vector2(1100,GameEnvironment.Random.Next(400,600)));
-                    container.Children.Add(platform1);
-                }
             }
+
+            if (cloudTimer >= 175 - (0.5f * (float)gameTime.TotalGameTime.TotalSeconds))
+            {
+                platform1 = new Platform(new Vector2(GameEnvironment.Screen.X, GameEnvironment.Random.Next(400, 600)), GameEnvironment.Random.Next(8, 12));
+                container.Children.Add(platform1);
+                cloudTimer = 0;
+            }
+            Console.WriteLine(-500f - (1f * (float)gameTime.TotalGameTime.TotalSeconds));
         }
     }
 }

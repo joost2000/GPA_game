@@ -13,9 +13,9 @@ namespace GPA_project
         int newY;
         public bool createNewY = false, moveObject = false;
 
-        public Platform(Vector2 _pos)
+        public Platform(Vector2 _pos, float platformSize)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < platformSize; i++)
             {
                 Add(new CloudTemplate(new Vector2(_pos.X + i * 80, _pos.Y)));
             }
@@ -26,7 +26,7 @@ namespace GPA_project
             base.Update(gameTime);
             foreach (CloudTemplate item in this.children)
             {
-                velocity.X = -400f;
+                velocity.X = -500f - (1f * (float)gameTime.TotalGameTime.TotalSeconds);
             }
 
         }
