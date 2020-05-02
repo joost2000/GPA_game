@@ -9,20 +9,23 @@ namespace GPA_project
 {
     class PlayingState : GameObjectList
     {
-        GameObjectList platforms;
+        GameObjectList container;
+        Platform platform1;
+        Platform platform2;
         Player player;
+
+        bool addNewclouds;
 
         public PlayingState()
         {
             this.Add(new SpriteGameObject("sky_background"));
 
-            platforms = new GameObjectList();
-            this.Add(platforms);
+            container = new GameObjectList();
+            this.Add(container);
 
-            for (int i = 0; i < GameEnvironment.Random.Next(8,12); i++)
-            {
-                this.platforms.Add(new Ground(new Vector2(100 + i * 80, GameEnvironment.Screen.Y - 100)));
-            }
+            platform1 = new Platform(new Vector2(50, 640));
+            this.container.Add(platform1);
+
             player = new Player();
             this.Add(player);
         }
@@ -30,22 +33,51 @@ namespace GPA_project
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            foreach (Ground cloud in platforms.Children)
+            platform1.moveObject = true;
+            player.onGround = false;
+            /*
+            player.onGround = false;
+            foreach (SpriteGameObject item in platform.Children.ToList())
             {
-                //cloud.MoveGround();
-                cloud.ResetCloud();
-
-                if (player.GlobalPosition.Y >= cloud.GlobalPosition.Y)
-                {
+                if(item.CollidesWith(player)){
                     player.onGround = true;
                 }
-                else
+                if (item.Position.X < 0 - item.Sprite.Width)
                 {
-                    player.onGround = false;
+                    platform.Remove(item);
+                    
                 }
-                Console.WriteLine(cloud.GlobalPosition.Y);
-                Console.WriteLine(player.onGround);
+                Console.WriteLine(platform.Children.Count());
+            }*/
+
+            /*if (platform.Children.Count != 10)
+            {
+                platform.createNewY = true;
+                platform.AddClouds();
+            }*/
+            foreach (Platform item in container.Children.ToList())
+            {
+                foreach (CloudTemplate sprite in item.Children.ToList())
+                {
+                    if (sprite.GlobalPosition.X < 0 - sprite.Width)
+                    {
+                        item.Children.Remove(sprite);
+                    }
+                    if (item.Children.Count == 0)
+                    {
+                        container.Children.Remove(item);
+                    }
+                    if (sprite.CollidesWith(player))
+                    {
+                        player.onGround = true;
+                    }
+                }
+                Console.WriteLine(container.Children.Count);
+                if (container.Children.Count == 0)
+                {
+                    platform1 = new Platform(new Vector2(1100,GameEnvironment.Random.Next(400,600)));
+                    container.Children.Add(platform1);
+                }
             }
         }
     }

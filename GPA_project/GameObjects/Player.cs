@@ -10,13 +10,12 @@ namespace GPA_project
 {
     class Player : SpriteGameObject
     {
-        public bool canJump, onGround, keyPressed;
+        public bool onGround, keyPressed;
         int jumpTimer = 0;
 
         public Player() : base("filler_player")
         {
             origin = Center;
-            scale = 0.05f;
             position = new Vector2(100, 470);
         }
 
@@ -48,10 +47,9 @@ namespace GPA_project
 
             if (inputHelper.IsKeyDown(Keys.Space) && !keyPressed)
             {
-                jumpTimer++;
-                Console.WriteLine(jumpTimer);
                 if (!(jumpTimer > 25))
                 {
+                    jumpTimer++;
                     velocity.Y = -200;
                     velocity.Y += -400f;
                 }
