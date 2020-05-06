@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using GPA_project;
 using Microsoft.Xna.Framework;
 
 public class AnimatedGameObject : SpriteGameObject
@@ -28,9 +30,10 @@ public class AnimatedGameObject : SpriteGameObject
         {
             animations[id].Mirror = sprite.Mirror;
         }
-        animations[id].Play();
+
         sprite = animations[id];
-        origin = new Vector2(sprite.Width / 2, sprite.Height);        
+        origin = new Vector2(sprite.Width / 2, sprite.Height);
+        animations[id].Play();
     }
 
     public override void Update(GameTime gameTime)
