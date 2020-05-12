@@ -64,7 +64,7 @@ namespace GPA_project
             if (saveTime)
             {
                 mainMenuExitTime = (float)gameTime.TotalGameTime.TotalSeconds;
-                GameEnvironment.GameStateManager.SwitchTo("PlayingState");
+                GameEnvironment.GameStateManager.SwitchTo("CharacterSelectState");
                 Reset();
             }
         }
