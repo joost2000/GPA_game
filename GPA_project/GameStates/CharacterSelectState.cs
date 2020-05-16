@@ -39,47 +39,78 @@ namespace GPA_project
             Text.Text = "Select a character";
             Text.Position = new Vector2(GameEnvironment.Screen.X / 2 - Text.Size.X / 2, 100);
             this.Add(Text);
-
+            
             characterSprites.Add(RobotAnim);
             characterSprites.Add(ZombieAnim);
             characterSprites.Add(MaleAdvAnim);
             characterSprites.Add(FemaleAdvAnim);
+            
 
             RobotAnim.LoadAnimation("RobotIdle", "idleAnim", true, 0.15f);
+            RobotAnim.LoadAnimation("RobotRun@3", "runAnim", true, 0.15f);
             ZombieAnim.LoadAnimation("ZombieIdle", "idleAnim", true, 0.15f);
+            ZombieAnim.LoadAnimation("ZombieRun", "runAnim", true, 0.15f);
             MaleAdvAnim.LoadAnimation("Male_adv_idle", "idleAnim", true, 0.15f);
+            MaleAdvAnim.LoadAnimation("Male_adv_idle", "runAnim", true, 0.15f);
             FemaleAdvAnim.LoadAnimation("Female_adv_idle", "idleAnim", true, 0.15f);
+            FemaleAdvAnim.LoadAnimation("Female_adv_idle", "runAnim", true, 0.15f);
 
-        }
-        public override void Update(GameTime gameTime)
-        {
-
-            base.Update(gameTime);
             for (int i = 0; i < characterSprites.Children.Count; i++)
             {
                 characterSprites.Children[i].Position = new Vector2(175 + 225 * i, 400);
                 this.Add(characterSprites.Children[i]);
             }
+        }
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
 
-            foreach (AnimatedGameObject item in characterSprites.Children)
+            switch (Selector)
             {
-                item.PlayAnimation("idleAnim");
-                if (Selector == 0)
-                {
-                    characterSprites.Children.IndexOf(item);
-                }
+                case 0:
+                    RobotAnim.PlayAnimation("runAnim");
+
+                    ZombieAnim.PlayAnimation("idleAnim");
+                    MaleAdvAnim.PlayAnimation("idleAnim");
+                    FemaleAdvAnim.PlayAnimation("idleAnim");
+                    break;
+                case 1:
+                    ZombieAnim.PlayAnimation("runAnim");
+
+                    MaleAdvAnim.PlayAnimation("idleAnim");
+                    RobotAnim.PlayAnimation("idleAnim");
+                    FemaleAdvAnim.PlayAnimation("idleAnim");
+                    break;
+                case 2:
+                    MaleAdvAnim.PlayAnimation("runAnim");
+
+                    RobotAnim.PlayAnimation("idleAnim");
+                    FemaleAdvAnim.PlayAnimation("idleAnim");
+                    ZombieAnim.PlayAnimation("idleAnim");
+                    break;
+                case 3:
+                    FemaleAdvAnim.PlayAnimation("runAnim");
+
+                    RobotAnim.PlayAnimation("idleAnim");
+                    MaleAdvAnim.PlayAnimation("idleAnim");
+                    ZombieAnim.PlayAnimation("idleAnim");
+                    break;
             }
+
             Console.WriteLine(Selector);
         }
 
         public override void HandleInput(InputHelper inputHelper)
         {
             base.HandleInput(inputHelper);
-            if (inputHelper.KeyPressed(Keys.Right))
+            if (Selector < 3)
             {
-                Selector += 1;
+                if (inputHelper.KeyPressed(Keys.Right))
+                {
+                    Selector += 1;
+                }
             }
-            else
+            if (Selector > 0)
             {
                 if (inputHelper.KeyPressed(Keys.Left))
                 {
