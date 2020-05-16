@@ -48,6 +48,7 @@
     <Compile Include="GameStates\GameOverState.cs" />
     <Compile Include="GameStates\PlayingState.cs" />
     <Compile Include="GameStates\StartUpState.cs" />
+    <Compile Include="GameStates\testEnvironment.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />

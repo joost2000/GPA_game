@@ -44,17 +44,16 @@ namespace GPA_project
             characterSprites.Add(ZombieAnim);
             characterSprites.Add(MaleAdvAnim);
             characterSprites.Add(FemaleAdvAnim);
-            
-
+                        
             RobotAnim.LoadAnimation("RobotIdle", "idleAnim", true, 0.15f);
             RobotAnim.LoadAnimation("RobotRun@3", "runAnim", true, 0.15f);
             ZombieAnim.LoadAnimation("ZombieIdle", "idleAnim", true, 0.15f);
-            ZombieAnim.LoadAnimation("ZombieRun", "runAnim", true, 0.15f);
+            ZombieAnim.LoadAnimation("ZombieRun@3", "runAnim", true, 0.15f);
             MaleAdvAnim.LoadAnimation("Male_adv_idle", "idleAnim", true, 0.15f);
-            MaleAdvAnim.LoadAnimation("Male_adv_idle", "runAnim", true, 0.15f);
+            MaleAdvAnim.LoadAnimation("RunAnimMale@3", "runAnim", true, 0.15f);
             FemaleAdvAnim.LoadAnimation("Female_adv_idle", "idleAnim", true, 0.15f);
-            FemaleAdvAnim.LoadAnimation("Female_adv_idle", "runAnim", true, 0.15f);
-
+            FemaleAdvAnim.LoadAnimation("RunAnimFemale@3", "runAnim", true, 0.15f);
+            
             for (int i = 0; i < characterSprites.Children.Count; i++)
             {
                 characterSprites.Children[i].Position = new Vector2(175 + 225 * i, 400);
