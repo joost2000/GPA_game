@@ -42,7 +42,7 @@ namespace GPA_project
             gameStateManager.AddGameState("GameOverState", new GameOverState());
             gameStateManager.AddGameState("testEnvironment", new testEnvironment());
 
-            gameStateManager.SwitchTo("CharacterSelectState");
+            gameStateManager.SwitchTo("StartUpState");
         }
     }
 }

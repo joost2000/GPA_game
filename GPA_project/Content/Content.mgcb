@@ -72,7 +72,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Female_adv_idle.png
+/build:Female_adv_idle.png;FemaleIdle.png
 
 #begin Male_adv_idle.png
 /importer:TextureImporter
@@ -84,7 +84,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Male_adv_idle.png
+/build:Male_adv_idle.png;MaleIdle.png
 
 #begin RobotIdle.png
 /importer:TextureImporter
@@ -144,7 +144,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:RunAnimFemale@3.png
+/build:RunAnimFemale@3.png;FemaleRun@3.png
 
 #begin RunAnimMale@3.png
 /importer:TextureImporter
@@ -156,7 +156,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:RunAnimMale@3.png
+/build:RunAnimMale@3.png;MaleRun@3.png
 
 #begin score.spritefont
 /importer:FontDescriptionImporter

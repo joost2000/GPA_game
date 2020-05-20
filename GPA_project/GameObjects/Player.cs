@@ -13,19 +13,28 @@ namespace GPA_project
         public bool onGround, keyPressed;
         int jumpTimer = 0;
 
+        private string selectedCharacter;
+        private bool notLoaded = true;
+
         public Player()
         {
-            //load player animations
-            LoadAnimation("RobotRun@3", "runningAnim", true, 0.15f);
-            LoadAnimation("RobotJump", "jumpAnim", false, 0.15f);
-            LoadAnimation("RobotLand", "landAnim", false, 0.15f);
-
             Reset();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            selectedCharacter = CharacterSelectState.getSelectedCharacter();
+
+            if (notLoaded)
+            {
+                LoadAnimation(selectedCharacter + "Run@3", "runningAnim", true, 0.15f);
+                LoadAnimation(selectedCharacter + "Jump", "jumpAnim", false, 0.15f);
+                LoadAnimation(selectedCharacter + "Land", "landAnim", false, 0.15f);
+                notLoaded = false;
+            }
+
             //play the loaded animations when player is on a platform
             //if player is not on a platform display the jumping/landing animation
             if (onGround)

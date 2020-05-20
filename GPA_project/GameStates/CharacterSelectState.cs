@@ -17,12 +17,14 @@ namespace GPA_project
 
         GameObjectList characterSprites;
 
+        public static List<string> names = new List<string>();
+
         AnimatedGameObject RobotAnim;
         AnimatedGameObject ZombieAnim;
         AnimatedGameObject MaleAdvAnim;
         AnimatedGameObject FemaleAdvAnim;
 
-        int Selector;
+        public static int Selector;
 
         public CharacterSelectState()
         {
@@ -59,6 +61,11 @@ namespace GPA_project
                 characterSprites.Children[i].Position = new Vector2(175 + 225 * i, 400);
                 this.Add(characterSprites.Children[i]);
             }
+
+            names.Add("Robot");
+            names.Add("Zombie");
+            names.Add("Male");
+            names.Add("Female");
         }
         public override void Update(GameTime gameTime)
         {
@@ -95,8 +102,6 @@ namespace GPA_project
                     ZombieAnim.PlayAnimation("idleAnim");
                     break;
             }
-
-            Console.WriteLine(Selector);
         }
 
         public override void HandleInput(InputHelper inputHelper)
@@ -116,6 +121,16 @@ namespace GPA_project
                     Selector -= 1;
                 }
             }
+
+            if (inputHelper.KeyPressed(Keys.Enter))
+            {
+                GameEnvironment.GameStateManager.SwitchTo("PlayingState");
+            }
+        }
+
+        public static String getSelectedCharacter()
+        {
+            return names[Selector];
         }
     }
 }
