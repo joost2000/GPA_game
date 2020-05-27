@@ -44,6 +44,7 @@
     <Compile Include="GameObjects\CloudTemplate.cs" />
     <Compile Include="GameObjects\Platform.cs" />
     <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="GameObjects\ThunderCloudTemplate.cs" />
     <Compile Include="GameStates\CharacterSelectState.cs" />
     <Compile Include="GameStates\GameOverState.cs" />
     <Compile Include="GameStates\PlayingState.cs" />

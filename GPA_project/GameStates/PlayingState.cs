@@ -46,7 +46,7 @@ namespace GPA_project
             //if the platform has a paltformtype higher than 10 let the platform drop and set the player's y position equal to it to prevent buggy jumping
             foreach (Platform item in container.Children.ToList())
             {
-                foreach (CloudTemplate sprite in item.Children.ToList())
+                foreach (SpriteGameObject sprite in item.Children.ToList())
                 {
                     if (player.CollidesWith(sprite))
                     {

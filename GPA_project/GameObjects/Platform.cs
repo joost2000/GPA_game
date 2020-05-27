@@ -20,9 +20,19 @@ namespace GPA_project
             platformType = _platformType;
 
             //add clouds to this list
-            for (int i = 0; i < platformSize; i++)
+            if (platformType > 10)
             {
-                Add(new CloudTemplate(new Vector2(_pos.X + i * 80, _pos.Y)));
+                for (int i = 0; i < platformSize; i++)
+                {
+                    Add(new ThunderCloudTemplate(new Vector2(_pos.X + i * 80, _pos.Y)));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < platformSize; i++)
+                {
+                    Add(new CloudTemplate(new Vector2(_pos.X + i * 80, _pos.Y)));
+                }
             }
         }
 
